@@ -46,7 +46,7 @@ class TaskCard extends StatelessWidget {
                 for (int i = 0; i < subject['tasks'].length; i++)
                   ListTile(
                     title: Text(subject['tasks'][i],style: TextStyle(color:Colors.white),),
-                    leading: Icon(Icons.check_box_outline_blank),
+                    leading: Icon(Icons.subject,color: Colors.white,)
                   )
               ],
             )),

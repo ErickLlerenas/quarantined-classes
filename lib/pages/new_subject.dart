@@ -116,13 +116,17 @@ class _NewSubjectState extends State<NewSubject> {
             print('${titleController.text}');
             print('${profesorController.text}');
             print(pickerColor);
+            print(values);
             appState.addSubject({
               'color':pickerColor.value.toString(),
               'title': titleController.text,
               'videoURL':videoURLController.text,
               'classURL': classURLController.text,
-              'profesor':profesorController.text
+              'profesor':profesorController.text,
+              'tasks':[],
+              'days':values
             });
+            Navigator.of(context).pop();
           },
         )
       ]))),

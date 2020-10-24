@@ -11,7 +11,8 @@ class AppState with ChangeNotifier {
     //   'profesor': 'Aguilar Arias Angélica María',
     //   'videoURL': 'https://meet.google.com/lookup/hywy4mowxw',
     //   'classURL': 'https://classroom.google.com/h',
-    //   'tasks': []
+    //   'tasks': [],
+    //   'days': [false, true, false, false, true, false, false]
     // },
     // {
     //   'color': '4294940672',
@@ -19,7 +20,8 @@ class AppState with ChangeNotifier {
     //   'profesor': 'Gallardo Armando Román',
     //   'videoURL': 'https://meet.google.com/nrt-hmcp-evw',
     //   'classURL': 'http://telematicanet.ucol.mx/moodle/',
-    //   'tasks': []
+    //   'tasks': [],
+    //   'days': [false, true, false, true, false, false, false]
     // },
     // {
     //   'color': '4293467747',
@@ -28,7 +30,8 @@ class AppState with ChangeNotifier {
     //   'videoURL':
     //       'https://us04web.zoom.us/j/9040707159?pwd=b3RRNzVMN29Lc3VaL0VQNlVmU3NFQT09',
     //   'classURL': 'http://telematicanet.ucol.mx/moodle/',
-    //   'tasks': []
+    //   'tasks': [],
+    //   'days': [false, false, false, true, false, true, false]
     // },
     // {
     //   'color': '4283215696',
@@ -36,7 +39,8 @@ class AppState with ChangeNotifier {
     //   'profesor': 'Ávalos Díaz Julia Karina',
     //   'videoURL': 'https://meet.google.com/lookup/a4kwap4xnt',
     //   'classURL': 'https://classroom.google.com/h',
-    //   'tasks': []
+    //   'tasks': [],
+    //   'days': [false, false, false, true, false, true, false]
     // },
     // {
     //   'color': '4294198070',
@@ -45,6 +49,7 @@ class AppState with ChangeNotifier {
     //   'videoURL': 'https://meet.google.com/lookup/b3b6qynsmz',
     //   'classURL': 'https://classroom.google.com/h',
     //   'tasks': ['Crear un video sobre los malos diseños'],
+    //   'days': [false, false, true, false, true, false, false]
     // },
     // {
     //   'color': '4280391411',
@@ -52,7 +57,8 @@ class AppState with ChangeNotifier {
     //   'profesor': 'Montesinos López Osval Antonio',
     //   'videoURL': 'https://meet.google.com/gyh-vtgg-mbv',
     //   'classURL': 'https://classroom.google.com/h',
-    //   'tasks': []
+    //   'tasks': [],
+    //   'days': [false, false, true, false, true, false, false]
     // },
     // {
     //   'color': '4288423856',
@@ -60,7 +66,8 @@ class AppState with ChangeNotifier {
     //   'profesor': 'Lepe Salazar Francisco Ivan',
     //   'videoURL': 'https://meet.google.com/lookup/eyifecgwc5',
     //   'classURL': 'https://classroom.google.com/h',
-    //   'tasks': []
+    //   'tasks': [],
+    //   'days': [false, true, false, true, false, true, false]
     // }
   ];
 
@@ -117,7 +124,8 @@ class AppState with ChangeNotifier {
     writeSubjects(subjects);
     notifyListeners();
   }
-  void addTaskToSubjectDialog(context,index){
+
+  void addTaskToSubjectDialog(context, index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -140,14 +148,15 @@ class AppState with ChangeNotifier {
                 ),
                 SizedBox(height: 20),
                 FlatButton(
-                    color: new Color(int.parse(subjects.elementAt(index)['color'])),
+                    color: new Color(
+                        int.parse(subjects.elementAt(index)['color'])),
                     child: Text(
                       'Agregar',
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
                       Navigator.pop(context);
-                      addTaskToSubject(index,newTaskController.text);
+                      addTaskToSubject(index, newTaskController.text);
                     })
               ],
             ),
@@ -158,7 +167,7 @@ class AppState with ChangeNotifier {
     );
   }
 
-  void completeTask(int taskIndex,int index) {
+  void completeTask(int taskIndex, int index) {
     subjects.elementAt(index)['tasks'].removeAt(taskIndex);
     writeSubjects(subjects);
     notifyListeners();

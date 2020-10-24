@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quarentine_schedule/provider/app_state.dart';
+import 'package:quarentine_schedule/widgets/my_drawer.dart';
 import 'package:quarentine_schedule/widgets/task_card.dart';
 
 class HomeWork extends StatefulWidget {
@@ -24,14 +25,19 @@ class _HomeWorkState extends State<HomeWork> {
     print(tasks);
 
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         title: Text('Tareas pendientes'),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
-             children: appState.subjects.asMap().map((index,subject)=>MapEntry(index, TaskCard(subject: subject,index:index))).values.toList() 
-           ),
+              children: appState.subjects
+                  .asMap()
+                  .map((index, subject) =>
+                      MapEntry(index, TaskCard(subject: subject, index: index)))
+                  .values
+                  .toList()),
         ),
       ),
     );
